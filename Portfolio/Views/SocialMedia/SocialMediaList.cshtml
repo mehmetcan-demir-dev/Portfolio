@@ -1,0 +1,48 @@
+﻿@model List<SocialMedia>
+@{
+    ViewData["Title"] = "SocialMediaList";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Sosyal Medya</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Sosyal Medya Hesapları</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Sosyal medya hesaplarınızı buradan güncelleyebilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Sosyal Medya</th>
+                                    <th scope="col">Link</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SocialMediaID</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.URL</td>
+                                        <td>@item.Icon</td>
+                                        <td><a href="/SocialMedia/UpdateSocialMedia/@item.SocialMediaID" class="btn btn-success">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

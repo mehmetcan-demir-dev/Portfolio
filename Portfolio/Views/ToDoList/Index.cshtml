@@ -1,0 +1,83 @@
+﻿@model List<ToDoList>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Layout/Index.cshtml";
+
+
+    var sortedModel = Model.OrderByDescending(e => e.ToDoListID).ToList();
+    int counter = 0;
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Yapılacaklar</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Yapılacaklar Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Buradan yapılacaklarınızı düzenleyebilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">İçerik</th>
+                                    <th scope="col">Tarih</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in sortedModel)
+                                {
+                                    counter++;
+                                    <tr>
+                                        <td>@counter</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Date.ToShortDateString()</td>
+                                        @if (item.Status == false)
+                                        {
+                                            <td>
+                                                <a asp-action="ChangeToDoStatusToTrue"
+                                                   asp-controller="ToDoList"
+                                                   asp-route-id="@item.ToDoListID"
+                                                   class="btn btn-outline-danger"
+                                                   style="width: 120px; height: 40px; text-align: center; line-height: 40px; display: inline-block; padding: 0;">
+                                                    Yapmadınız
+                                                </a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <a asp-action="ChangeToDoStatusToFalse"
+                                                   asp-controller="ToDoList"
+                                                   asp-route-id="@item.ToDoListID"
+                                                   class="btn btn-outline-primary"
+                                                   style="width: 120px; height: 40px; text-align: center; line-height: 40px; display: inline-block; padding: 0;">
+                                                    Yaptınız
+                                                </a>
+                                            </td>
+                                        }
+
+
+                                        <td><a href="/ToDoList/DeleteToDo/@item.ToDoListID" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/ToDoList/UpdateToDo/@item.ToDoListID" class="btn btn-success">Güncelle</a></td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <td><a href="/ToDoList/CreateToDo/" class="btn btn-primary">Yeni Yapılacak</a></td>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

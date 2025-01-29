@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\hola-master\Ready-Bootstrap-Dashboard-master\.DS_Store" />
+    <None Include="wwwroot\Ready-Bootstrap-Dashboard-master\.DS_Store" />
   </ItemGroup>
 
   <ItemGroup>

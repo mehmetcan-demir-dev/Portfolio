@@ -279,6 +279,33 @@ namespace Portfolio.Migrations
 
                     b.ToTable("Testimonials");
                 });
+
+            modelBuilder.Entity("Portfolio.DAL.Entities.ToDoList", b =>
+                {
+                    b.Property<int>("ToDoListID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoListID"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ToDoListID");
+
+                    b.ToTable("ToDoLists");
+                });
 #pragma warning restore 612, 618
         }
     }

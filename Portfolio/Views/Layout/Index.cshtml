@@ -1,15 +1,25 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
+@await Component.InvokeAsync("_LayoutHeadComponentPartial");
 <body>
+    <div class="wrapper">
+        @await Component.InvokeAsync("_LayoutNavbarComponentPartial");
+        @await Component.InvokeAsync("_LayoutSidebarComponentPartial");
+        <div class="main-panel">
+            @RenderBody()
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="copyright">
+                        <span>Portfolio. Tüm hakları saklıdır. ©  @DateTime.Now.Year.</span>
+                        <span>Mehmetcan Demir tarafından tasarlandı.</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
 </body>
+@await Component.InvokeAsync("_LayoutScriptComponentPartial");
 </html>

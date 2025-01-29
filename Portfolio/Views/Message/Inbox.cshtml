@@ -1,0 +1,76 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Mesajlar</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Gelen Kutusu</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Buradan mesajlarınızı görüntüleyebilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Unvan</th>
+                                    <th scope="col">Konu</th>
+                                    <th scope="col">Eposta</th>
+                                    <th scope="col">Tarih</th>
+                                    <th scope="col">Görüntüle</th>
+                                    <th scope="col">Statü Değiştir</th>
+                                    <th scope="col">Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.MessageID</td>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.SendDate.ToShortDateString()</td>
+                                        <td><a href="/Message/MessageDetail/@item.MessageID" class="btn btn-primary">Görüntüle</a></td>
+                                        @if (item.IsRead == true)
+                                        {
+                                            <td>
+                                                <a href="/Message/ChangeIsReadStatusToFalse/@item.MessageID"
+                                                   class="btn btn-outline-danger"
+                                                   style="width: 120px; height: 40px; text-align: center; line-height: 40px; display: inline-block; padding: 0;">
+                                                    Okumadınız
+                                                </a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <a asp-action="ChangeIsReadStatusToTrue"
+                                                   asp-controller="Message"
+                                                   asp-route-id="@item.MessageID"
+                                                   class="btn btn-outline-primary"
+                                                   style="width: 120px; height: 40px; text-align: center; line-height: 40px; display: inline-block; padding: 0;">
+                                                    Okudunuz
+                                                </a>
+                                            </td>
+                                        }
+
+                                        <td><a href="/Message/DeleteMessage/@item.MessageID" class="btn btn-danger">Sil</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

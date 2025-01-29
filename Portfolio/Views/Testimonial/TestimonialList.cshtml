@@ -1,0 +1,53 @@
+﻿@model List<Testimonial>
+@{
+    ViewData["Title"] = "TestimonialList";
+    Layout = "~/Views/Layout/Index.cshtml";
+
+    int counter = 0;
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Referanslar</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Referans Detay Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Buradan iletişim bilgilerinizi düzenleyebilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Isim Soyisim</th>
+                                    <th scope="col">Unvan</th>
+                                    <th scope="col">Yorum</th>
+                                    <th scope="col">Resim Yolu</th>
+                                    <th scope="col">Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    counter++;
+                                    <tr>
+
+                                        <td>@counter</td>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Comment</td>
+                                        <td>@item.ImageURL</td>
+                                        <td><a href="/Testimonial/UpdateTestimonial/@item.TestimonialID" class="btn btn-success">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
