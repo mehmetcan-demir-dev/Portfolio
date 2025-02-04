@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio.DAL.Context;
 
 namespace Portfolio.Controllers
 {
+    [Authorize]
     public class AboutController : Controller
     {
         PortfolioContext context = new PortfolioContext();

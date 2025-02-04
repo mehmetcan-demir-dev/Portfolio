@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio.DAL.Context;
 using Portfolio.DAL.Entities;
 
 namespace Portfolio.Controllers
 {
+    [Authorize]
     public class ExperienceController : Controller
     {
         PortfolioContext context = new PortfolioContext();

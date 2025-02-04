@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio.DAL.Context;
 using Portfolio.DAL.Entities;
 
 namespace Portfolio.Controllers
 {
-	public class ToDoListController : Controller
+    public class ToDoListController : Controller
 	{
 		PortfolioContext context = new PortfolioContext();
 		public IActionResult Index()

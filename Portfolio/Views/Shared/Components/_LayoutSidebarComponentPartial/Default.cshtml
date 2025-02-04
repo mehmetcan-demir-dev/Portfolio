@@ -58,7 +58,7 @@
 			<li class="nav-item">
 				<a href="/Document/DocumentList/">
 					<i class="la la-user"></i>
-					<p>Hakkımda</p>
+					<p>Belgeler</p>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -111,11 +111,14 @@
 				</a>
 			</li>
 			<li class="nav-item update-pro">
-				<button data-toggle="modal" data-target="#modalUpdate">
-					<i class="la la-sign-out"></i>
-					<p>Çıkış Yap</p>
-				</button>
+				<form method="post" action="/Account/Logout">
+					<button type="submit" class="btn btn-primary">
+						<i class="la la-sign-out"></i>
+						<p>Çıkış Yap</p>
+					</button>
+				</form>
 			</li>
+
 		</ul>
 	</div>
 </div>

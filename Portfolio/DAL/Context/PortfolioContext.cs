@@ -1,14 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Portfolio.DAL.Entities;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Portfolio.DAL.Entities;  // User sınıfı burada olduğu için bu namespace'i de ekliyoruz
 
 namespace Portfolio.DAL.Context
 {
-    public class PortfolioContext : DbContext
+    public class PortfolioContext : IdentityDbContext<User>  // User sınıfı burada kullanılıyor
     {
+        public PortfolioContext(DbContextOptions<PortfolioContext> options)
+            : base(options)
+        {
+        }
+
+        public PortfolioContext()
+        {
+        }
+
+        // OnConfiguring metodu ile veritabanı sağlayıcısını burada da ekleyebilirsiniz.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DEMIR11\\SQLEXPRESS;initial Catalog=PortfolioDB;integrated security=true;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=DEMIR11\\SQLEXPRESS;Initial Catalog=PortfolioDB;Integrated Security=True;");
+            }
         }
+
+        // DbSet'ler burada yer alıyor
         public DbSet<About> Abouts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Experience> Experiences { get; set; }
